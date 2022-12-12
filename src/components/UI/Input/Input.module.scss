@@ -1,0 +1,6 @@
+@import '../../../styles/functions/toRem.scss';
+
+.error {
+  font-size: toRem(12);
+  color: red;
+}
