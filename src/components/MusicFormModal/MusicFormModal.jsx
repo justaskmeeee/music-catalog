@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addSong } from "../../store/slices/songSlice";
-import Input from "../UI/Input/Input";
-import Select from "../UI/Select/Select";
-import { checkInputValidation } from "../../utils/checkInputValue";
-import Button from "../UI/Button/Button";
+import { addSong } from "store/slices/songSlice";
+import Input from "../UI/Input";
+import Select from "../UI/Select";
+import { checkInputValidation } from "utils/checkInputValue";
+import Button from "../UI/Button";
 import s from './MusicFormModal.module.scss';
 
 const MusicFormModal = ({isOpen}) => {

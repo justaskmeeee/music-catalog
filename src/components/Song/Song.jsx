@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import QuickModal from "../QuickModal/QuickModal";
-import Button from "../UI/Button/Button";
+import QuickModal from "../QuickModal";
+import Button from "../UI/Button";
 import s from "./Song.module.scss";
 
 const Song = ({title, album, artist, duration, genre}) => {

@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Song from "../Song/Song";
-import { catalog } from "../../store/selectors";
-import s from './MusicCatalogList.module.scss';
+import Song from "../Song";
+import { catalog } from "store/selectors";
+import s from "./MusicCatalogList.module.scss";
 
 const MusicCatalogList = () => {
   const songs = useSelector(catalog);

@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { formModal } from "../../store/selectors";
-import { setFormModalVisibility } from "../../store/slices/modalSlice";
-import MusicCatalogList from "../MusicCatalogList/MusicCatalogList";
-import MusicFormModal from "../MusicFormModal/MusicFormModal";
-import Button from "../UI/Button/Button";
+import { formModal } from "store/selectors";
+import { setFormModalVisibility } from "store/slices/modalSlice";
+import MusicCatalogList from "../MusicCatalogList";
+import MusicFormModal from "../MusicFormModal";
+import Button from "../UI/Button";
 import s from './Content.module.scss';
 
 const Content = () => {
@@ -26,9 +26,9 @@ const Content = () => {
       {formModalIsOpen && 
         <MusicFormModal isOpen={handleFormModalVisibility} />
       }
-      <div>
+      <>
         <h2 className={s.caption}>Список песен:</h2>
-      </div>
+      </>
       <MusicCatalogList />
     </div>
   );
