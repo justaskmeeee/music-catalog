@@ -26,9 +26,7 @@ const Content = () => {
       {formModalIsOpen && 
         <MusicFormModal isOpen={handleFormModalVisibility} />
       }
-      <>
-        <h2 className={s.caption}>Список песен:</h2>
-      </>
+      <h2 className={s.caption}>Список песен:</h2>
       <MusicCatalogList />
     </div>
   );

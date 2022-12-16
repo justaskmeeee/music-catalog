@@ -4,10 +4,10 @@ import Header from '../Header';
 
 const MusicCatalogApp = () => {
   return (
-    <div>
+    <>
       <Header />
       <Content />
-    </div>
+    </>
   )
 }
 
