@@ -1,18 +1,19 @@
 import React from "react";
+import Modal from "components/UI/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { formModal } from "store/selectors";
-import { setFormModalVisibility } from "store/slices/modalSlice";
+import { modal } from "store/selectors";
+import { setModalVisibility } from "store/slices/modalSlice";
 import MusicCatalogList from "../MusicCatalogList";
-import MusicFormModal from "../MusicFormModal";
+import MusicForm from "../MusicForm";
 import Button from "../UI/Button";
 import s from './Content.module.scss';
 
 const Content = () => {
-  const formModalIsOpen = useSelector(formModal);
+  const modalIsOpen = useSelector(modal);
   const dispatch = useDispatch();
 
-  const handleFormModalVisibility = () => {
-    dispatch(setFormModalVisibility(!formModalIsOpen));
+  const handleModalVisibility = () => {
+    dispatch(setModalVisibility(!modalIsOpen));
   }
 
   return (
@@ -20,11 +21,13 @@ const Content = () => {
       <div className={s.buttonContainer}>
         <Button 
           text="Добавить песню"
-          onClick={handleFormModalVisibility} 
+          onClick={handleModalVisibility} 
         />
       </div>
-      {formModalIsOpen && 
-        <MusicFormModal isOpen={handleFormModalVisibility} />
+      {modalIsOpen &&
+        <Modal onClose={handleModalVisibility}>
+          <MusicForm isOpen={handleModalVisibility}/>
+        </Modal>
       }
       <h2 className={s.caption}>Список песен:</h2>
       <MusicCatalogList />
