@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import s from "./Input.module.scss";
 
 const Input = ({label, error, errorMessage, ...props}) => {
   return (
-      <div>
+      <div className={s.container}>
         <label>{label}</label>
-        <input 
-          className={s.input}
-          {...props} 
-        />
+        <input className={s.inputField} {...props} />
         {error && <div className={s.error}>{errorMessage}</div>}
       </div>
   );
