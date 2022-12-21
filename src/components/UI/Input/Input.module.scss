@@ -1,0 +1,28 @@
+@import "/src/styles/functions/toRem.scss";
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  &:not(:last-child) {
+    margin-bottom: toRem(15);
+  }
+}
+
+.inputField {
+  height: toRem(30);
+  padding: 0 toRem(20);
+  border: 1px solid rgba(192, 192, 192, 0.5);
+  border-radius: toRem(5);
+  outline: none;
+
+  &:focus {
+    border: 1px solid silver;
+  }
+}
+
+.error {
+  font-size: toRem(12);
+  color: red;
+}

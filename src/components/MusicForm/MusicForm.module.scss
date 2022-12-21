@@ -1,0 +1,16 @@
+@import "/src/styles/functions/toRem.scss";
+
+.musicForm{
+  width: toRem(250);
+  height: toRem(450);
+  padding-top: toRem(35);
+  padding-right: toRem(20);
+  padding-bottom: toRem(20);
+  padding-left: toRem(20);
+}
+
+.addButton {
+  position: absolute;
+  bottom: 8%;
+  right: 8%;
+}
