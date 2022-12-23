@@ -1,15 +1,16 @@
 import React from "react";
 import Modal from "components/UI/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { modal } from "store/selectors";
+import { modalSelector } from "store/selectors";
 import { setModalVisibility } from "store/slices/modalSlice";
 import MusicCatalogList from "../MusicCatalogList";
 import MusicForm from "../MusicForm";
 import Button from "../UI/Button";
 import s from './Content.module.scss';
+import SongAbout from "components/SongAbout";
 
 const Content = () => {
-  const modalIsOpen = useSelector(modal);
+  const modalIsOpen = useSelector(modalSelector);
   const dispatch = useDispatch();
 
   const handleModalVisibility = () => {

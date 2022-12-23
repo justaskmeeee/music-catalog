@@ -4,8 +4,6 @@ import Button from "../Button";
 import s from "./Modal.module.scss";
 
 const Modal = ({onClose, children, ...props}) => {
-  const modalNode = document.getElementById('modal'); 
-
   const handleCloseModal = () => {
     if (onClose()) {
       onClose();
@@ -26,7 +24,7 @@ const Modal = ({onClose, children, ...props}) => {
         onClick={handleCloseModal} />
       </div>
     </div>,
-    modalNode
+    document.getElementById('modal')
   ) 
 }
 
