@@ -1,16 +1,8 @@
-import Modal from "components/UI/Modal";
 import React from "react";
-import { useState } from "react";
 import Button from "../UI/Button";
 import s from "./Song.module.scss";
 
-const Song = ({title, album, artist, duration, genre}) => {
-  const [quickModalIsOpen, setQuickModalIsOpen] = useState(false);
-
-  const handleQuickModalVisibility = () => {
-    setQuickModalIsOpen(!quickModalIsOpen);
-  }
-
+const Song = ({title, album, artist, onView}) => {
   return (
     <>
       <li>
@@ -23,21 +15,10 @@ const Song = ({title, album, artist, duration, genre}) => {
           <Button 
             className={s.quickview} 
             text="Просмотр"
-            onClick={handleQuickModalVisibility}
+            onClick={onView}
           /> 
         </div>
       </li>
-      {quickModalIsOpen &&
-        <Modal onClose={handleQuickModalVisibility}>
-          <div className={s.quickViewInfo}>
-            <p>Название песни: {title}</p>
-            <p>Альбом: {album} </p>
-            <p>Артист: {artist}</p>
-            <p>Длительность: {duration}</p>
-            <p>Жанр: {genre}</p>
-          </div>
-        </Modal>
-      }
     </>
   );
 }
