@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   songs: JSON.parse(localStorage.getItem('songs')) || [],
+  currentSong: {},
 }
 
 export const songSlice = createSlice({
@@ -22,9 +23,12 @@ export const songSlice = createSlice({
 
       state.songs.push(song);
       localStorage.setItem('songs', JSON.stringify(state.songs));
+    },
+    getCurrentSong(state, action) {
+      state.currentSong = state.songs.find(song => song.id === action.payload.id);
     }
   }
 })
 
-export const { addSong } = songSlice.actions;
+export const { addSong, getCurrentSong } = songSlice.actions;
 export default songSlice.reducer;
