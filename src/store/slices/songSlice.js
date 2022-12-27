@@ -26,9 +26,36 @@ export const songSlice = createSlice({
     },
     getCurrentSong(state, action) {
       state.currentSong = state.songs.find(song => song.id === action.payload.id);
+    },
+    editCurrentSong(state, action) {
+      state.currentSong = {...state.currentSong, ...action.payload};
+    },
+    clearCurrentSongValue(state) {
+      state.currentSong = {};
+    }, 
+    removeCurrentSong(state) {
+      state.songs = state.songs.filter(song => song.id !== state.currentSong.id);
+      localStorage.setItem('songs', JSON.stringify(state.songs));
+    },
+    saveEditedSongValues(state, action) {
+      state.songs = state.songs.map(song => {
+        if (song.id === action.payload) {
+          return {...song, ...state.currentSong}
+        } 
+
+        return song;
+      })
     }
   }
 })
 
-export const { addSong, getCurrentSong } = songSlice.actions;
+export const { 
+  addSong, 
+  getCurrentSong, 
+  editCurrentSong,
+  clearCurrentSongValue, 
+  removeCurrentSong,
+  saveEditedSongValues,
+} = songSlice.actions;
+
 export default songSlice.reducer;
