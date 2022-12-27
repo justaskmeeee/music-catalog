@@ -1,18 +1,14 @@
 import React from "react";
 import { v4 as uuidv4 } from 'uuid'; 
+import s from './Select.module.scss';
 
-const Select = ({defaultValue, value, onChange, options}) => {
-  const handleSelectValue = (event) => {
-    onChange(event.target.value);
-  }
-
+const Select = ({value, onChange, options}) => {
   return (
     <div>
       <label>Выберите жанр:</label>
-      <select value={value} onChange={handleSelectValue}>
-        <option disabled>{defaultValue}</option>
+      <select value={value} onChange={onChange}>
         {options.map(option => {
-          return <option value={option.value} key={uuidv4()}>
+          return <option className={s.genreOption} value={option.value} key={uuidv4()}>
             {option.name}
           </option>
         })}

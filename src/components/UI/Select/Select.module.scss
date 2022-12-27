@@ -1,0 +1,7 @@
+@import '/src/styles/functions/toRem.scss';
+
+.genreOption {
+  &:nth-child(1) {
+    display: none;
+  }
+}
