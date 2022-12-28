@@ -45,6 +45,7 @@ export const songSlice = createSlice({
 
         return song;
       })
+      localStorage.setItem('songs', JSON.stringify(state.songs));
     }
   }
 })
