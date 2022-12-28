@@ -6,8 +6,8 @@ import { setModalVisibility } from "store/slices/modalSlice";
 import MusicCatalogList from "../MusicCatalogList";
 import MusicForm from "../MusicForm";
 import Button from "../UI/Button";
+import { songValue } from "utils/formValues";
 import s from './Content.module.scss';
-import SongAbout from "components/SongAbout";
 
 const Content = () => {
   const modalIsOpen = useSelector(modalSelector);
@@ -27,7 +27,11 @@ const Content = () => {
       </div>
       {modalIsOpen &&
         <Modal onClose={handleModalVisibility}>
-          <MusicForm isOpen={handleModalVisibility}/>
+          <MusicForm 
+            isOpen={handleModalVisibility} 
+            isCreating={modalIsOpen}
+            songItemValues={songValue}
+          />
         </Modal>
       }
       <h2 className={s.caption}>Список песен:</h2>

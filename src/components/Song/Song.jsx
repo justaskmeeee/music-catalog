@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../UI/Button";
 import s from "./Song.module.scss";
 
-const Song = ({title, album, artist, onView}) => {
+const Song = ({title, album, artist, onQuickView, onEdit}) => {  
   return (
     <>
       <li>
@@ -15,8 +15,12 @@ const Song = ({title, album, artist, onView}) => {
           <Button 
             className={s.quickview} 
             text="Просмотр"
-            onClick={onView}
+            onClick={onQuickView}
           /> 
+          <Button
+            text="Редактировать"
+            onClick={onEdit}
+          />
         </div>
       </li>
     </>

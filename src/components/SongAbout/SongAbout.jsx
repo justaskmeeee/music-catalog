@@ -1,17 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { currentSongSelector } from "store/selectors";
 
-const SongAbout = () => {
-  const currentSong = useSelector(currentSongSelector);
-
+const SongAbout = ({songItemValues}) => {
   return (
     <div>
-      <p>Название песни: {currentSong.title}</p>
-      <p>Альбом: {currentSong.album} </p>
-      <p>Артист: {currentSong.artist}</p>
-      <p>Длительность: {currentSong.duration}</p>
-      <p>Жанр: {currentSong.genre}</p>
+      <p>Название песни: {songItemValues.title}</p>
+      <p>Альбом: {songItemValues.album} </p>
+      <p>Артист: {songItemValues.artist}</p>
+      <p>Длительность: {songItemValues.duration || 'Не указана'}</p>
+      <p>Жанр: {songItemValues.genre || 'Не указан'}</p>
     </div>
   )
 }

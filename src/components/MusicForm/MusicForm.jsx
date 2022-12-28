@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addSong } from "store/slices/songSlice";
+import { addSong, editCurrentSong, removeCurrentSong, saveEditedSongValues } from "store/slices/songSlice";
 import Input from "../UI/Input";
 import Select from "../UI/Select";
-import { checkInputValidation } from "utils/checkInputValue";
 import Button from "../UI/Button";
+import { checkInputValidation } from "utils/checkInputValue";
 import s from './MusicForm.module.scss';
 
-const MusicForm = ({isOpen}) => {
-  const [values, setValues] = useState({
-    title: '',
-    album: '', 
-    artist: '',
-    duration: '',
-  });
+const MusicForm = ({isOpen, isCreating, isEditing, songItemValues}) => {
+  const [values, setValues] = useState(songItemValues);
   const selectOptions = [
+    { value: '', name: songItemValues.genre || 'Не указан'},
     { value: 'house', name: 'house' },
     { value: 'rap', name: 'rap' },
     { value: 'hip-hop', name: 'hip-hop' },
     { value: 'electronic', name: 'electronic' },
     { value: 'classic', name: 'classic' },
   ];
-  const [selectedItem, setSelectedItem] = useState('');
+  const [selectedItem, setSelectedItem] = useState(selectOptions[0].value);
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
   const dispatch = useDispatch(); 
@@ -33,16 +29,15 @@ const MusicForm = ({isOpen}) => {
 
   const handleInputValue = (event) => {
     const { name, value } = event.target;
-
     setValues({
       ...values,
       [name]: value,
     })
-
   }
 
-  const handleSelectedItem = (item) => {
-    setSelectedItem(item);
+  const handleSelectedItem = (event) => {
+    setSelectedItem(event.target.value);
+    console.log(event.target.value);
   }
   
   const createSongItem = () => {
@@ -50,9 +45,26 @@ const MusicForm = ({isOpen}) => {
       title: values.title,
       album: values.album,
       artist: values.artist,
-      duration: values.duration || 'Не указано',
-      genre: selectedItem || 'Не указано',
+      duration: values.duration,
+      genre: selectedItem,
     }));
+  }
+
+  const handleRemoveSongItem = (event) => {
+    event.preventDefault();
+    dispatch(removeCurrentSong());
+    isOpen();
+  }
+
+  const handleSaveEditedSongValues = (event) => {
+    event.preventDefault();
+    setErrors(checkInputValidation(values));
+    dispatch(editCurrentSong({...values, genre: selectedItem}));
+
+    if (isValid) {
+      dispatch(saveEditedSongValues(values.id));
+      isOpen();
+    }
   }
 
   const handleSubmit = (event) => {
@@ -114,16 +126,29 @@ const MusicForm = ({isOpen}) => {
         placeholder="Укажите длительность"
       />
       <Select
-        defaultValue="Выберите жанр" 
         value={selectedItem}
         onChange={handleSelectedItem}
         options={selectOptions}
       />
-      <Button 
-        className={s.addButton}
-        text="Добавить"
-        onClick={handleSubmit}
-      />
+      {isCreating &&
+        <Button 
+          className={s.addButton}
+          text="Добавить"
+          onClick={handleSubmit}
+        />
+      }
+      {isEditing &&
+        <>
+          <Button 
+            text="Удалить"
+            onClick={handleRemoveSongItem}
+          />
+          <Button 
+            text="Сохранить"
+            onClick={handleSaveEditedSongValues}
+          />
+        </>
+      }
     </form>
   );
 }
