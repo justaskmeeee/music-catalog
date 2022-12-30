@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Song from "../Song";
-import { catalogSelector, currentSongSelector } from "store/selectors";
+import { currentSongSelector, filterSongs } from "store/selectors";
 import { getCurrentSong, clearCurrentSongValue } from "store/slices/songSlice";
 import Modal from "components/UI/Modal";
 import SongAbout from "components/SongAbout";
@@ -11,7 +11,7 @@ import { songItemSelector } from "store/selectors";
 import s from "./MusicCatalogList.module.scss";
 
 const MusicCatalogList = () => {
-  const songs = useSelector(catalogSelector);
+  const songs = useSelector(filterSongs);
   const songIsOpen = useSelector(songItemSelector);
   const currentSong = useSelector(currentSongSelector);
   const [quickViewIsOpen, setQuickViewIsOpen] = useState(false);
