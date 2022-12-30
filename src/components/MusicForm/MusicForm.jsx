@@ -37,7 +37,6 @@ const MusicForm = ({isOpen, isCreating, isEditing, songItemValues}) => {
 
   const handleSelectedItem = (event) => {
     setSelectedItem(event.target.value);
-    console.log(event.target.value);
   }
   
   const createSongItem = () => {
