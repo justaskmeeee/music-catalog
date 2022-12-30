@@ -7,6 +7,7 @@ import MusicCatalogList from "../MusicCatalogList";
 import MusicForm from "../MusicForm";
 import Button from "../UI/Button";
 import { songValue } from "utils/formValues";
+import SongFilter from "components/SongFilter";
 import s from './Content.module.scss';
 
 const Content = () => {
@@ -35,6 +36,7 @@ const Content = () => {
         </Modal>
       }
       <h2 className={s.caption}>Список песен:</h2>
+      <SongFilter />
       <MusicCatalogList />
     </div>
   );
