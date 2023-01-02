@@ -4,3 +4,17 @@
   display: flex;
   justify-content: center;
 }
+
+.searchField {
+  width: 100%;
+  min-width: toRem(300);
+  max-width: toRem(550);
+  height: toRem(20);
+  padding: toRem(10) toRem(20);
+  font-size: toRem(24);
+
+  &::placeholder {
+    font-size: toRem(20);
+    color: rgba(0, 0, 0, .7);
+  }
+}
