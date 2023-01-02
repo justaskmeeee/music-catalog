@@ -1,0 +1,36 @@
+@import '/src/styles/functions/toRem.scss';
+
+.songPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: toRem(400);
+  padding: toRem(30);
+  border-radius: toRem(20);
+  box-shadow: 0 0 toRem(20) black;
+}
+
+.caption {
+  margin: 0;
+  margin-bottom: toRem(10);
+}
+
+.subtitle {
+  margin-top: 0;
+}
+
+.backButton {
+  position: absolute;
+  bottom: 8%;
+  right: 8%;
+  cursor: pointer;
+}

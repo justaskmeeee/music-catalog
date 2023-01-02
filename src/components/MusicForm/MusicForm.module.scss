@@ -13,4 +13,20 @@
   position: absolute;
   bottom: 8%;
   right: 8%;
+  cursor: pointer;
+}
+
+.buttonsContainer {
+  position: absolute;
+  bottom: 8%;
+  right: 8%;
+}
+
+.removeButton {
+  margin-right: toRem(5);
+  cursor: pointer;
+}
+
+.saveButton {
+  cursor: pointer;
 }

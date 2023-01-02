@@ -137,16 +137,18 @@ const MusicForm = ({isOpen, isCreating, isEditing, songItemValues}) => {
         />
       }
       {isEditing &&
-        <>
+        <div className={s.buttonsContainer}>
           <Button 
+            className={s.removeButton}
             text="Удалить"
             onClick={handleRemoveSongItem}
           />
-          <Button 
+          <Button
+            className={s.saveButton}
             text="Сохранить"
             onClick={handleSaveEditedSongValues}
           />
-        </>
+        </div>
       }
     </form>
   );

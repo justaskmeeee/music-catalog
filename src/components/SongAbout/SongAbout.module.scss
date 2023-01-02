@@ -1,0 +1,23 @@
+@import '/src/styles/functions/toRem.scss';
+
+.about {
+  width: 80%;
+  min-width: toRem(350);
+  max-width: toRem(500);
+  height: toRem(250);
+  padding: toRem(30);
+}
+
+.text {
+  display: block;
+  margin: 0;
+  font-size: toRem(20);
+  
+  &:not(:last-child) {
+    margin-bottom: toRem(10);
+  }
+}
+
+.bold {
+  font-weight: 600;
+}

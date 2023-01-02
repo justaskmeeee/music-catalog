@@ -8,6 +8,7 @@ import SongAbout from "components/SongAbout";
 import MusicForm from "components/MusicForm";
 import { setSongItemVisibility } from "store/slices/modalSlice";
 import { songItemSelector } from "store/selectors";
+import SongNotFound from "components/SongNotFound";
 import s from "./MusicCatalogList.module.scss";
 
 const MusicCatalogList = () => {
@@ -50,7 +51,7 @@ const MusicCatalogList = () => {
             />
     }
   }
-
+  
   return (
     <>
       {songIsOpen &&
@@ -59,16 +60,21 @@ const MusicCatalogList = () => {
         </Modal>
       }
       <ul>
-        {songs.map(item => {
-          return <Song 
-                    key={item.id}
-                    title={item.title}
-                    album={item.album} 
-                    artist={item.artist}
-                    onQuickView={() => handleQuickView(item.id)}
-                    onEdit={() => handleEditingForm(item.id)}
-                  />
-        })}
+        {songs.length ? 
+          (songs.map((item, index) => {
+            const songIndex = index + 1;
+            return <Song 
+                      key={item.id}
+                      title={item.title}
+                      album={item.album} 
+                      artist={item.artist}
+                      index={songIndex}
+                      onQuickView={() => handleQuickView(item.id)}
+                      onEdit={() => handleEditingForm(item.id)}
+                    />
+          })) :
+          <SongNotFound />
+        }
       </ul> 
     </>
   );

@@ -4,6 +4,7 @@ export const catalogSelector = (state) => state.catalog.songs;
 export const modalSelector = (state) => state.modal.modalIsOpen;
 export const songItemSelector = (state) => state.modal.songItemIsOpen;
 export const currentSongSelector = (state) => state.catalog.currentSong;
+export const routeSongValueSelector = (state) => state.catalog.routeSongValue;
 export const filterValueSelector = (state) => state.catalog.filterValue;
 
 export const filterSongs = createSelector(
@@ -18,4 +19,9 @@ export const filterSongs = createSelector(
       }
     }    
   })
+)
+
+export const getCountOfSongs = createSelector(
+  catalogSelector,
+  (songs) => songs.length
 )
