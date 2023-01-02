@@ -5,7 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 const initialState = {
   songs: JSON.parse(localStorage.getItem('songs')) || [],
   currentSong: {},
-  filterValue: '',
+  routeSongValue: {},
+  filterValue: JSON.parse(localStorage.getItem('filter-value')) || '',
 }
 
 export const songSlice = createSlice({
@@ -50,6 +51,10 @@ export const songSlice = createSlice({
     },
     changeFilterValue(state, action) {
       state.filterValue = action.payload;
+      localStorage.setItem('filter-value', JSON.stringify(state.filterValue));
+    },
+    getSongValueByIndex(state, action) {
+      state.routeSongValue = state.songs[action.payload - 1];
     }
   }
 })
@@ -62,6 +67,7 @@ export const {
   removeCurrentSong,
   saveEditedSongValues,
   changeFilterValue,
+  getSongValueByIndex,
 } = songSlice.actions;
 
 export default songSlice.reducer;
