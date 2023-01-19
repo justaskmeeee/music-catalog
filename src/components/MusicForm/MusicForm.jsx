@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { addSong, editCurrentSong, removeCurrentSong, saveEditedSongValues } from "store/slices/songSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getAddSongFetch, getRemoveCurrentSongFetch, getSaveEditedSongValuesFetch } from "store/slices/songSlice";
 import Input from "../UI/Input";
 import Select from "../UI/Select";
 import Button from "../UI/Button";
 import { checkInputValidation } from "utils/checkInputValue";
+import { v4 as uuid } from 'uuid'; 
+import { currentSongSelector } from "store/selectors";
 import s from './MusicForm.module.scss';
 
 const MusicForm = ({isOpen, isCreating, isEditing, songItemValues}) => {
@@ -20,8 +22,9 @@ const MusicForm = ({isOpen, isCreating, isEditing, songItemValues}) => {
   const [selectedItem, setSelectedItem] = useState(selectOptions[0].value);
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
+  const currentSong = useSelector(currentSongSelector);
   const dispatch = useDispatch(); 
- 
+  
   useEffect(() => {
     const errorsCount = Object.keys(checkInputValidation(values)).length;
     setIsValid(errorsCount === 0);
@@ -40,28 +43,28 @@ const MusicForm = ({isOpen, isCreating, isEditing, songItemValues}) => {
   }
   
   const createSongItem = () => {
-    dispatch(addSong({
+    dispatch(getAddSongFetch({
       title: values.title,
       album: values.album,
       artist: values.artist,
       duration: values.duration,
       genre: selectedItem,
+      id: uuid(),
     }));
   }
 
   const handleRemoveSongItem = (event) => {
     event.preventDefault();
-    dispatch(removeCurrentSong());
+    dispatch(getRemoveCurrentSongFetch(currentSong.id));
     isOpen();
   }
 
   const handleSaveEditedSongValues = (event) => {
     event.preventDefault();
     setErrors(checkInputValidation(values));
-    dispatch(editCurrentSong({...values, genre: selectedItem}));
 
     if (isValid) {
-      dispatch(saveEditedSongValues(values.id));
+      dispatch(getSaveEditedSongValuesFetch({...values, genre: selectedItem}));
       isOpen();
     }
   }
@@ -83,7 +86,7 @@ const MusicForm = ({isOpen, isCreating, isEditing, songItemValues}) => {
   }
 
   return (
-    <form className={s.musicForm}>
+    <form className={s.musicForm} onSubmit={handleSubmit}>
       <Input 
         type="text"
         label="Название песни:"
@@ -130,10 +133,10 @@ const MusicForm = ({isOpen, isCreating, isEditing, songItemValues}) => {
         options={selectOptions}
       />
       {isCreating &&
-        <Button 
-          className={s.addButton}
-          text="Добавить"
-          onClick={handleSubmit}
+        <input 
+          className={s.submitButton}
+          type="submit" 
+          value="Добавить" 
         />
       }
       {isEditing &&
