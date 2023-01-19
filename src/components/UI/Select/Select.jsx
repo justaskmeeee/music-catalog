@@ -5,8 +5,8 @@ import s from './Select.module.scss';
 const Select = ({value, onChange, options}) => {
   return (
     <div>
-      <label>Выберите жанр:</label>
-      <select value={value} onChange={onChange}>
+      <label className={s.genreLabel}>Выберите жанр:</label>
+      <select className={s.genreSelect} value={value} onChange={onChange}>
         {options.map(option => {
           return <option className={s.genreOption} value={option.value} key={uuidv4()}>
             {option.name}
