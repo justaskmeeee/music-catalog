@@ -1,32 +1,32 @@
 import Button from "components/UI/Button";
+import Loader from "components/UI/Loader";
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { getCountOfSongs, routeSongValueSelector } from "store/selectors";
-import { getSongValueByIndex } from "store/slices/songSlice";
-import { converToNumber } from "utils/convertToNumber";
+import { useNavigate, useParams } from "react-router-dom";
+import { isLoadingSelector, isOpenedSelector, routeSongValueSelector } from "store/selectors";
+import { getSongPageByIdFetch } from "store/slices/songSlice";
 import s from './SongPage.module.scss';
 
 const SongPage = () => {
-  const countOfSongs = useSelector(getCountOfSongs);
   const routeSong = useSelector(routeSongValueSelector);
   const { id } = useParams();
   const navigate = useNavigate();
-  const songIndex = converToNumber(id);
+  const songIsLoading = useSelector(isLoadingSelector);
+  const songIsOpened = useSelector(isOpenedSelector);
   const dispatch = useDispatch(); 
 
   useEffect(() => {
-    dispatch(getSongValueByIndex(id));
-  }, [id])
+    dispatch(getSongPageByIdFetch(id));
+  }, [dispatch])
 
   const handleGoToCatalog = () => {
     navigate('/items', { replace: true });
   }
 
   return (
-    <>
-      {(songIndex <= countOfSongs) ?
+    <>            
+      {(songIsOpened && !songIsLoading) ?
         <div className={s.songPage}>
           <div className={s.info}>
             <h1 className={s.caption}>Название - {routeSong.title}</h1>
@@ -35,8 +35,8 @@ const SongPage = () => {
               <p>Название песни - {routeSong.title}</p>
               <p>Альбом - {routeSong.album}</p>
               <p>Артист - {routeSong.artist}</p>
-              <p>Длительность - {routeSong.duration || 'Не указана'}</p>
-              <p>Жанр - {routeSong.genre || 'Не указан'}</p>
+              <p>Длительность - {routeSong.duration || 'не указана'}</p>
+              <p>Жанр - {routeSong.genre || 'не выбран'}</p>
             </div>
             <Button 
               className={s.backButton}
@@ -45,7 +45,7 @@ const SongPage = () => {
             />
           </div>
         </div> :
-        <Navigate to={'/items'} replace />
+        <Loader title='Загрузка песни...' />
       }
     </>
   );
