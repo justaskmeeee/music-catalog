@@ -1,0 +1,9 @@
+@import '/src/styles/functions/toRem.scss';
+
+.container {
+  min-width: toRem(300);
+  max-width: toRem(700);
+  margin: 0 auto;
+  padding: 0 toRem(20);
+  overflow-x: hidden;
+}
