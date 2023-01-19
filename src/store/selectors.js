@@ -6,6 +6,9 @@ export const songItemSelector = (state) => state.modal.songItemIsOpen;
 export const currentSongSelector = (state) => state.catalog.currentSong;
 export const routeSongValueSelector = (state) => state.catalog.routeSongValue;
 export const filterValueSelector = (state) => state.catalog.filterValue;
+export const isLoadingSelector = (state) => state.catalog.isLoading;
+export const isOpenedSelector = (state) => state.catalog.isOpened;
+export const isShownSelector = (state) => state.catalog.isShown;
 
 export const filterSongs = createSelector(
   catalogSelector,
