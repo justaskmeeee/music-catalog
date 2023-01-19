@@ -3,15 +3,20 @@
 .filter {
   display: flex;
   justify-content: center;
+  margin: 0 toRem(20);
 }
 
 .searchField {
   width: 100%;
-  min-width: toRem(300);
+  min-width: toRem(200);
   max-width: toRem(550);
   height: toRem(20);
   padding: toRem(10) toRem(20);
-  font-size: toRem(24);
+  font-size: toRem(22);
+  border: none;
+  border-radius: toRem(5);
+  box-shadow: 0 0 toRem(10) #fdfcdc;
+  outline: none;
 
   &::placeholder {
     font-size: toRem(20);
