@@ -1,6 +1,5 @@
 @import "/src/styles/functions/toRem.scss";
 
-
 .container {
   display: flex;
   flex-direction: column;
@@ -10,11 +9,18 @@
   }
 }
 
+.label {
+  font-size: toRem(14);
+  margin-bottom: toRem(5);
+}
+
 .inputField {
   height: toRem(30);
   padding: 0 toRem(20);
+  margin-bottom: toRem(5);
   border: 1px solid rgba(192, 192, 192, 0.5);
   border-radius: toRem(5);
+  font-size: toRem(15);
   outline: none;
 
   &:focus {
