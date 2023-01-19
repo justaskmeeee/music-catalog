@@ -1,49 +1,49 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Song from "../Song";
-import { currentSongSelector, filterSongs } from "store/selectors";
-import { getCurrentSong, clearCurrentSongValue } from "store/slices/songSlice";
+import { currentSongSelector, filterSongs, isLoadingSelector, songItemSelector, isShownSelector } from "store/selectors";
+import { getCurrentSongValueFetch } from "store/slices/songSlice";
 import Modal from "components/UI/Modal";
+import Song from "../Song";
 import SongAbout from "components/SongAbout";
 import MusicForm from "components/MusicForm";
 import { setSongItemVisibility } from "store/slices/modalSlice";
-import { songItemSelector } from "store/selectors";
-import SongNotFound from "components/SongNotFound";
-import s from "./MusicCatalogList.module.scss";
+import Loader from "components/UI/Loader";
 
 const MusicCatalogList = () => {
   const songs = useSelector(filterSongs);
   const songIsOpen = useSelector(songItemSelector);
   const currentSong = useSelector(currentSongSelector);
+  const currentSongValueIsNotEmpty = Object.keys(currentSong).length !== 0;
   const [quickViewIsOpen, setQuickViewIsOpen] = useState(false);
   const [editingFormIsOpen, setEditingFormIsOpen] = useState(false);
+  const catalogIsLoading = useSelector(isLoadingSelector);
+  const songIsShown = useSelector(isShownSelector);
   const dispatch = useDispatch();
 
   const handleQuickView = (id) => {
-    dispatch(getCurrentSong({id}));
+    dispatch(getCurrentSongValueFetch(id));
     dispatch(setSongItemVisibility(!songIsOpen));
     setQuickViewIsOpen(!quickViewIsOpen);
   }
 
   const handleEditingForm = (id) => {
-    dispatch(getCurrentSong({id}));
+    dispatch(getCurrentSongValueFetch(id));
     dispatch(setSongItemVisibility(!songIsOpen));
     setEditingFormIsOpen(!editingFormIsOpen);
   }
   
   const handleCloseSongItem = () => {
     dispatch(setSongItemVisibility(!songIsOpen));
-    dispatch(clearCurrentSongValue());
     setQuickViewIsOpen(false);
     setEditingFormIsOpen(false);
   }
 
   const getChoosedSongInfo = () => {
-    if (quickViewIsOpen) {
+    if (quickViewIsOpen && songIsShown) {
       return <SongAbout songItemValues={currentSong} />
     }
 
-    if (editingFormIsOpen) {
+    if (editingFormIsOpen && currentSongValueIsNotEmpty) {
       return <MusicForm 
               isOpen={handleCloseSongItem}
               isEditing={songIsOpen} 
@@ -54,26 +54,25 @@ const MusicCatalogList = () => {
   
   return (
     <>
-      {songIsOpen &&
+      {(songIsOpen && songIsShown) &&
         <Modal onClose={handleCloseSongItem}>
           {getChoosedSongInfo()}
         </Modal>
       }
       <ul>
-        {songs.length ? 
-          (songs.map((item, index) => {
-            const songIndex = index + 1;
+        {!catalogIsLoading ? 
+          (songs.map(item => {
             return <Song 
                       key={item.id}
                       title={item.title}
                       album={item.album} 
                       artist={item.artist}
-                      index={songIndex}
+                      id={item.id}
                       onQuickView={() => handleQuickView(item.id)}
                       onEdit={() => handleEditingForm(item.id)}
                     />
           })) :
-          <SongNotFound />
+          <Loader title='Загрузка...' />
         }
       </ul> 
     </>

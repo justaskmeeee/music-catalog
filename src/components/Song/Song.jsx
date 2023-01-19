@@ -1,14 +1,14 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "../UI/Button";
 import s from "./Song.module.scss";
 
-const Song = ({title, album, artist, index, onQuickView, onEdit}) => {  
+const Song = ({title, album, artist, id, onQuickView, onEdit}) => {  
   return (
     <>
       <li>
         <div className={s.song}>
-          <Link className={s.link} to={`/items/${index}`}>
+          <Link className={s.link} to={`/items/${id}`}>
             <div className={s.info}>
               <div className={s.importantInfo}>
                 <div className={s.title}>{title}&nbsp;-</div>

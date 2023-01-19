@@ -18,10 +18,11 @@ const Modal = ({onClose, children, ...props}) => {
     <div className={s.container} onClick={handleCloseModal}>
       <div className={s.modal} onClick={stopPropagation} {...props}>
         {children}
-      <Button 
-        className={s.closeButton}
-        text="[Х]" 
-        onClick={handleCloseModal} />
+        <Button 
+          className={s.closeButton}
+          text="x" 
+          onClick={handleCloseModal} 
+        />
       </div>
     </div>,
     document.getElementById('modal')

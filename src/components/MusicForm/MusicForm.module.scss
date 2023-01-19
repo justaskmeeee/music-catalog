@@ -9,10 +9,14 @@
   padding-left: toRem(20);
 }
 
-.addButton {
+.submitButton {
   position: absolute;
   bottom: 8%;
   right: 8%;
+  padding: toRem(5) toRem(7);
+  border: toRem(1) solid #f07167; 
+  border-radius: toRem(4);
+  background: none;
   cursor: pointer;
 }
 
@@ -23,10 +27,18 @@
 }
 
 .removeButton {
+  padding: toRem(5) toRem(7);
   margin-right: toRem(5);
+  border: toRem(1) solid #f07167; 
+  border-radius: toRem(4);
+  background: none;
   cursor: pointer;
 }
 
 .saveButton {
+  padding: toRem(5) toRem(7);
+  border: toRem(1) solid #f07167; 
+  border-radius: toRem(4);
+  background: none;
   cursor: pointer;
 }

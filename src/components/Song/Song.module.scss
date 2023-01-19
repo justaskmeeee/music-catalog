@@ -4,8 +4,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: toRem(25);
-  margin-bottom: toRem(25);
+  margin-bottom: toRem(15);
+  width: 100%;
+  min-width: toRem(250);
+
+  @media (max-width: toRem(481)) {
+    flex-wrap: wrap;
+    margin-bottom: toRem(10);
+  }
 }
 
 .link {
@@ -25,16 +31,20 @@
 .info {
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
-  width: 100%;
-  max-width: toRem(500);
-  min-width: toRem(150);
-  min-height: toRem(40);
-  margin-right: toRem(20);
-  padding: toRem(10);
+  justify-content: space-between;
+  width: calc(100% - 55px);
+  padding: toRem(10) toRem(20);
   border-radius: toRem(5);
-  box-shadow: 0 0 toRem(5) black;
+  box-shadow: 0 0 toRem(15) #f07167;
   background: rgb(235, 235, 235);
+
+  @media (max-width: toRem(481)) {
+    justify-content: space-evenly;
+    align-items: center;
+    width: auto;
+    height: toRem(50);
+    margin-bottom: toRem(10);
+  }
 }
 
 .importantInfo {
@@ -42,12 +52,12 @@
 }
 
 .title {
-  font-size: toRem(20);
+  font-size: toRem(16);
   font-weight: 600;
 }
 
 .artist {
-  font-size: toRem(20);
+  font-size: toRem(16);
 }
 
 .album {
@@ -58,9 +68,20 @@
   display: flex;
   flex-direction: column;
   gap: toRem(5);
+
+  @media (max-width: toRem(481)) {
+    flex-direction: row;
+  }
 }
 
 .songButton {
+  width: toRem(130);
+  padding: toRem(4);
+  border: toRem(1) solid #fdfcdc;
+  border-radius: toRem(4);
+  box-shadow: 0 toRem(5) toRem(5) #f07167;
+  color: #fdfcdc;
+  background: none;
   cursor: pointer;
 }
 
