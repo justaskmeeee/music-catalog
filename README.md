@@ -1,4 +1,4 @@
-Music catalog
+### Music catalog
 В проекте используется JSON-SERVER
 
 Команды:
