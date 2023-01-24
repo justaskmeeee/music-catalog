@@ -1,0 +1,22 @@
+@import '/src/styles/functions/toRem.scss';
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-width: toRem(250);
+  max-width: toRem(500);
+  min-height: toRem(250);
+  padding: toRem(30);
+}
+
+.text {
+  display: block;
+  margin: 0;
+  font-size: toRem(18);
+  word-break: break-all;
+}
+
+.bold {
+  font-weight: 600;
+}

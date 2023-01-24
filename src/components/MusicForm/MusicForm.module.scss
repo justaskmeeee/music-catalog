@@ -1,0 +1,44 @@
+@import "/src/styles/functions/toRem.scss";
+
+.musicForm{
+  width: toRem(250);
+  height: toRem(450);
+  padding-top: toRem(35);
+  padding-right: toRem(20);
+  padding-bottom: toRem(20);
+  padding-left: toRem(20);
+}
+
+.submitButton {
+  position: absolute;
+  bottom: 8%;
+  right: 8%;
+  padding: toRem(5) toRem(7);
+  border: toRem(1) solid #f07167; 
+  border-radius: toRem(4);
+  background: none;
+  cursor: pointer;
+}
+
+.buttonsContainer {
+  position: absolute;
+  bottom: 8%;
+  right: 8%;
+}
+
+.removeButton {
+  padding: toRem(5) toRem(7);
+  margin-right: toRem(5);
+  border: toRem(1) solid #f07167; 
+  border-radius: toRem(4);
+  background: none;
+  cursor: pointer;
+}
+
+.saveButton {
+  padding: toRem(5) toRem(7);
+  border: toRem(1) solid #f07167; 
+  border-radius: toRem(4);
+  background: none;
+  cursor: pointer;
+}

@@ -1,0 +1,87 @@
+@import "/src/styles/functions/toRem.scss";
+
+.song {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: toRem(15);
+  width: 100%;
+  min-width: toRem(250);
+
+  @media (max-width: toRem(481)) {
+    flex-wrap: wrap;
+    margin-bottom: toRem(10);
+  }
+}
+
+.link {
+  display: block;
+  width: 100%;
+  max-width: toRem(550);
+  min-width: toRem(200);
+  color: black;
+}
+
+.viewButton {
+  width: auto;
+  min-width: toRem(70);
+  height: toRem(25);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100% - 55px);
+  padding: toRem(10) toRem(20);
+  border-radius: toRem(5);
+  box-shadow: 0 0 toRem(15) #f07167;
+  background: rgb(235, 235, 235);
+
+  @media (max-width: toRem(481)) {
+    justify-content: space-evenly;
+    align-items: center;
+    width: auto;
+    height: toRem(50);
+    margin-bottom: toRem(10);
+  }
+}
+
+.importantInfo {
+  display: flex;
+}
+
+.title {
+  font-size: toRem(16);
+  font-weight: 600;
+}
+
+.artist {
+  font-size: toRem(16);
+}
+
+.album {
+  font-size: toRem(14);
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(5);
+
+  @media (max-width: toRem(481)) {
+    flex-direction: row;
+  }
+}
+
+.songButton {
+  width: toRem(130);
+  padding: toRem(4);
+  border: toRem(1) solid #fdfcdc;
+  border-radius: toRem(4);
+  box-shadow: 0 toRem(5) toRem(5) #f07167;
+  color: #fdfcdc;
+  background: none;
+  cursor: pointer;
+}
+
