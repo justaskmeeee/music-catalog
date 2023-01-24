@@ -12,7 +12,7 @@ import s from './Content.module.scss';
 
 const Content = () => {
   const modalIsOpen = useSelector(modalSelector);
-  const countOfSongs = useSelector(getCountOfSongs);
+  const songCatalogIsEmpty = useSelector(getCountOfSongs) === 0;
   const dispatch = useDispatch();
 
   const handleModalVisibility = () => {
@@ -38,10 +38,10 @@ const Content = () => {
         </Modal>
       }
       <h2 className={s.caption}>Список песен:</h2>
-      {(countOfSongs !== 0) && 
+      {!songCatalogIsEmpty && 
         <SongFilter />
       }
-      <MusicCatalogList />
+      <MusicCatalogList isEmpty={songCatalogIsEmpty} />
     </div>
   );
 }

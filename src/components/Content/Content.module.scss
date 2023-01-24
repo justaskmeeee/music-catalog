@@ -6,13 +6,15 @@
 }
 
 .addSongButton {
+  width: toRem(170);
+  height: toRem(40);
   padding: toRem(8);
   border: toRem(1) solid #fdfcdc;
   border-radius: toRem(5);
   font-size: toRem(16);
   font-weight: 600;
   color: #fdfcdc;
-  box-shadow: 0 toRem(5) toRem(5) #f07167;
+  box-shadow: 0 toRem(5) toRem(15) #f07167;
   background: none;
   cursor: pointer;
 }
@@ -21,4 +23,5 @@
   text-align: center;
   color: #fdfcdc;
   text-shadow: 0 toRem(5) toRem(5) #f07167;
+  user-select: none;
 }

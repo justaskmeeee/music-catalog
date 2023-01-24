@@ -1,9 +1,9 @@
 import React from "react";
 import s from './SongNotFound.module.scss';
 
-const SongNotFound = () => {
+const SongNotFound = ({ caption }) => {
   return (
-    <h2 className={s.caption}>Песня не найдена</h2>
+    <h1 className={s.caption}>{caption}</h1>
   );
 }
 
