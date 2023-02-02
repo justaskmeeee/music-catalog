@@ -1,3 +1,26 @@
+@import '/src/styles/functions/toRem.scss';
+
+.loader {
+  width: toRem(40);
+  height: toRem(40);
+  margin: 0 auto;
+  border: toRem(10) solid #fdfcdc;
+  border-top: toRem(10) solid #00afb9;
+  border-radius: 50%;
+  animation: loading 2s linear infinite;
+  user-select: none;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  } 
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .title {
   text-align: center;
   color: #fdfcdc;
