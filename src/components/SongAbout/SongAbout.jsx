@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from 'prop-types';
 import s from './SongAbout.module.scss';
 
 const SongAbout = ({ songItemValues }) => {
@@ -21,6 +22,10 @@ const SongAbout = ({ songItemValues }) => {
       </p>
     </div>
   )
+}
+
+SongAbout.propTypes = {
+  songItemValues: propTypes.objectOf(propTypes.string),
 }
 
 export default SongAbout;
