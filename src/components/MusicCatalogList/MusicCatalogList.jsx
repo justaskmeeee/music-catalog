@@ -9,6 +9,8 @@ import SongNotFound from "components/SongNotFound";
 import MusicForm from "components/MusicForm";
 import { setSongItemVisibility } from "store/slices/modalSlice";
 import Loader from "components/UI/Loader";
+import propTypes from 'prop-types';
+import s from './MusicCatalogList.module.scss';
 
 const MusicCatalogList = ({ isEmpty }) => {
   const songs = useSelector(filterSongs);
@@ -81,14 +83,18 @@ const MusicCatalogList = ({ isEmpty }) => {
           {getChoosedSongInfo()}
         </Modal>
       }
-      <ul>
+      <ul className={s.list}>
         {catalogIsLoading ? 
-          <Loader title='Загрузка...' /> :
+          <Loader /> :
           getSongCatalog()
         } 
       </ul> 
     </>
   );
+}
+
+MusicCatalogList.propTypes = {
+  isEmpty: propTypes.bool,
 }
 
 export default MusicCatalogList;

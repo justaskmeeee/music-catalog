@@ -1,5 +1,5 @@
 import { 
-  getAddSongFailure, getAddSongFetch, getAddSongSuccess, getCurrentSongValueFailure, getCurrentSongValueFetch, getCurrentSongValueSuccess, getRemoveCurrentSongFailure, getRemoveCurrentSongFetch, getRemoveCurrentSongSuccess, getSaveEditedSongValuesFailure, getSaveEditedSongValuesFetch, getSaveEditedSongValuesSuccess, getSongPageByIdFailure, getSongPageByIdFetch, getSongPageByIdSuccess, getSongsFailure, getSongsFetch, getSongsSuccess 
+  getAddSongFailure, getAddSongFetch, getAddSongSuccess, getChangeFilterValueFetch, getCurrentSongValueFailure, getCurrentSongValueFetch, getCurrentSongValueSuccess, getRemoveCurrentSongFailure, getRemoveCurrentSongFetch, getRemoveCurrentSongSuccess, getSaveEditedSongValuesFailure, getSaveEditedSongValuesFetch, getSaveEditedSongValuesSuccess, getSongPageByIdFailure, getSongPageByIdFetch, getSongPageByIdSuccess, getSongsFailure, getSongsFetch, getSongsSuccess, getChangeFilterValueSuccess 
 } from 'store/slices/songSlice';
 import { all, put, call, takeEvery, takeLatest } from 'redux-saga/effects';
 import { deleteSong } from 'store/api/deleteSong';
@@ -7,6 +7,7 @@ import { fetchSongs } from 'store/api/fetchSongs';
 import { addSongToCatalog } from 'store/api/addSongToCatalog';
 import { getSongById } from 'store/api/getSongById';
 import { editSong } from 'store/api/editSong';
+import { searchSong } from 'store/api/searchSong';
 
 function* workGetCatalogOfSongs() {
   try {
@@ -74,6 +75,16 @@ function* workGetSongPageById({ payload }) {
   }
 }
 
+function* workSearchSong({ payload }) {
+  try {
+    const filterValue = payload;
+    const result = yield call(searchSong, filterValue);
+    yield put(getChangeFilterValueSuccess(filterValue));
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 function* watchGetCatalogOfSongs() {
   yield takeEvery(getSongsFetch.type, workGetCatalogOfSongs)
 }
@@ -98,6 +109,10 @@ function* watchGetSongPageById() {
   yield takeEvery(getSongPageByIdFetch.type, workGetSongPageById)
 }
 
+function* watchSearchSong() {
+  yield takeEvery(getChangeFilterValueFetch.type, workSearchSong);
+}
+
 export default function* rootSaga() {
   yield all([
     watchGetCatalogOfSongs(),
@@ -106,5 +121,6 @@ export default function* rootSaga() {
     watchEditSong(),
     watchDeleteSong(),
     watchGetSongPageById(),
+    watchSearchSong(),
   ])
 }

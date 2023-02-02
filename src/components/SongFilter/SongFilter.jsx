@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { changeFilterValue } from "store/slices/songSlice";
+import { getChangeFilterValueFetch } from "store/slices/songSlice";
 import { useSearchParams } from "react-router-dom";
 import s from './SongFilter.module.scss';
 
@@ -10,7 +10,7 @@ const SongFilter = () => {
 
   const handleSongFilterValue = (event) => {
     const { value } = event.target;
-    dispatch(changeFilterValue(value));
+    dispatch(getChangeFilterValueFetch(value));
     setSearchParams({search: value});
   }
 

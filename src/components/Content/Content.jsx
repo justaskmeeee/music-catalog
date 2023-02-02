@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "components/UI/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { modalSelector, getCountOfSongs } from "store/selectors";
+import { modalSelector, isCatalogEmpty } from "store/selectors";
 import { setModalVisibility } from "store/slices/modalSlice";
 import MusicCatalogList from "../MusicCatalogList";
 import MusicForm from "../MusicForm";
@@ -12,7 +12,7 @@ import s from './Content.module.scss';
 
 const Content = () => {
   const modalIsOpen = useSelector(modalSelector);
-  const songCatalogIsEmpty = useSelector(getCountOfSongs) === 0;
+  const songCatalogIsEmpty = useSelector(isCatalogEmpty);
   const dispatch = useDispatch();
 
   const handleModalVisibility = () => {

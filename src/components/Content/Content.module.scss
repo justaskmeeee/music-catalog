@@ -8,6 +8,7 @@
 .addSongButton {
   width: toRem(170);
   height: toRem(40);
+  margin-bottom: toRem(20);
   padding: toRem(8);
   border: toRem(1) solid #fdfcdc;
   border-radius: toRem(5);
@@ -16,10 +17,19 @@
   color: #fdfcdc;
   box-shadow: 0 toRem(5) toRem(15) #f07167;
   background: none;
+  transition: all 0.1s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
+
+  &:active {
+    transform: scale(0.9);
+    box-shadow: none;
+  }
 }
 
 .caption {
+  margin: 0;
+  margin-bottom: toRem(20);
   text-align: center;
   color: #fdfcdc;
   text-shadow: 0 toRem(5) toRem(5) #f07167;

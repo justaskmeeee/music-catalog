@@ -5,6 +5,8 @@ const initialState = {
   isLoading: false,
   isAdded: false,
   isRemoved: false,
+  isSaved: false,
+  isNotFound: false,
   isOpened: false,
   isShown: false,
   currentSong: {},
@@ -58,17 +60,11 @@ export const songSlice = createSlice({
       state.currentSong = {};
       state.isShown = false;
     },
-    getEditSongFetch(state) {
-      
-    },
     getEditSongSuccess(state, action) {
       state.currentSong = {...state.currentSong, ...action.payload};
     },
-    getEditSongFailure(state) {
-
-    },
     getSaveEditedSongValuesFetch(state) {
-
+      state.isSaved = true;
     },
     getSaveEditedSongValuesSuccess(state, action) {
       const editingSongId = action.payload.id;
@@ -81,9 +77,11 @@ export const songSlice = createSlice({
 
         return song;
       });
+
+      state.isSaved = false;
     },
     getSaveEditedSongValuesFailure(state) {
-
+      state.isSaved = false;
     },
     getRemoveCurrentSongFetch(state) {
       state.isRemoved = true;
@@ -98,18 +96,25 @@ export const songSlice = createSlice({
     getSongPageByIdFetch(state) {
       state.isLoading = true;
       state.isOpened = false;
+      state.isNotFound = false;
     },
     getSongPageByIdSuccess(state, action) {
       const songValue = action.payload;
       state.routeSongValue = songValue;
       state.isLoading = false; 
       state.isOpened = true;
+      state.isNotFound = true;
     },
     getSongPageByIdFailure(state) {
-      state.isLoading = true;
+      state.isLoading = false;
       state.isOpened = false;
+      state.isNotFound = true;
     },
-    changeFilterValue(state, action) {
+    getChangeFilterValueFetch(state) {
+      state.isLoading = true;
+    },
+    getChangeFilterValueSuccess(state, action) {
+      state.isLoading = false;
       state.filterValue = action.payload;
     },
   }
@@ -136,7 +141,6 @@ export const {
   getSongPageByIdFailure,
   getChangeFilterValueFetch,
   getChangeFilterValueSuccess,
-  changeFilterValue,
 } = songSlice.actions;
 
 export default songSlice.reducer;

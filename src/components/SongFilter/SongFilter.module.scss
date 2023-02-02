@@ -3,7 +3,8 @@
 .filter {
   display: flex;
   justify-content: center;
-  margin: 0 toRem(20);
+  margin: toRem(20);
+  margin-top: 0;
 }
 
 .searchField {
@@ -17,6 +18,10 @@
   border-radius: toRem(5);
   box-shadow: 0 0 toRem(10) #fdfcdc;
   outline: none;
+
+  @media (max-width: toRem(481)) {
+    text-align: center;
+  }
 
   &::placeholder {
     font-size: toRem(20);

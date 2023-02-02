@@ -10,7 +10,7 @@
 
   @media (max-width: toRem(481)) {
     flex-wrap: wrap;
-    margin-bottom: toRem(10);
+    margin-bottom: toRem(20);
   }
 }
 
@@ -32,36 +32,61 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: toRem(5);
   width: calc(100% - 55px);
   padding: toRem(10) toRem(20);
   border-radius: toRem(5);
   box-shadow: 0 0 toRem(15) #f07167;
   background: rgb(235, 235, 235);
+  transition: all .1s ease-in-out;
+
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 toRem(10) #b8544c;
+  }
 
   @media (max-width: toRem(481)) {
     justify-content: space-evenly;
-    align-items: center;
     width: auto;
-    height: toRem(50);
-    margin-bottom: toRem(10);
+    min-height: toRem(50);
+    margin-bottom: toRem(20);
   }
 }
 
 .importantInfo {
   display: flex;
+  align-items: center;
+}
+
+.asd {
+  margin: 0;
 }
 
 .title {
   font-size: toRem(16);
   font-weight: 600;
+
+  @media (max-width: toRem(481)) {
+    font-size: toRem(20);
+  }
 }
 
 .artist {
   font-size: toRem(16);
+  word-break: break-word;
+
+  @media (max-width: toRem(481)) {
+    font-size: toRem(20);
+  }
 }
 
 .album {
   font-size: toRem(14);
+  word-break: break-all;
+
+  @media (max-width: toRem(481)) {
+    font-size: toRem(18);
+  }
 }
 
 .buttonsContainer {
@@ -82,6 +107,14 @@
   box-shadow: 0 toRem(5) toRem(5) #f07167;
   color: #fdfcdc;
   background: none;
+  transition: all 0.1s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
+
+  &:active {
+    transform: scale(.9);
+    box-shadow: none;
+  }
+  
 }
 

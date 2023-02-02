@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Button from "../Button";
+import propTypes from 'prop-types';
 import s from "./Modal.module.scss";
 
-const Modal = ({onClose, children, ...props}) => {
+const Modal = ({ onClose, children }) => {
   const handleCloseModal = () => {
     if (onClose()) {
       onClose();
@@ -16,7 +17,7 @@ const Modal = ({onClose, children, ...props}) => {
 
   return ReactDOM.createPortal(
     <div className={s.container} onClick={handleCloseModal}>
-      <div className={s.modal} onClick={stopPropagation} {...props}>
+      <div className={s.modal} onClick={stopPropagation}>
         {children}
         <Button 
           className={s.closeButton}
@@ -27,6 +28,11 @@ const Modal = ({onClose, children, ...props}) => {
     </div>,
     document.getElementById('modal')
   ) 
+}
+
+Modal.propTypes = {
+  onClose: propTypes.func.isRequired,
+  children: propTypes.element,
 }
 
 export default Modal;

@@ -7,9 +7,10 @@ import Button from "../UI/Button";
 import { checkInputValidation } from "utils/checkInputValue";
 import { v4 as uuid } from 'uuid'; 
 import { currentSongSelector } from "store/selectors";
+import propTypes from 'prop-types';
 import s from './MusicForm.module.scss';
 
-const MusicForm = ({isOpen, isCreating, isEditing, songItemValues}) => {
+const MusicForm = ({ isOpen, isCreating, isEditing, songItemValues }) => {
   const [values, setValues] = useState(songItemValues);
   const selectOptions = [
     { value: '', name: songItemValues.genre || 'Не указан'},
@@ -39,7 +40,8 @@ const MusicForm = ({isOpen, isCreating, isEditing, songItemValues}) => {
   }
 
   const handleSelectedItem = (event) => {
-    setSelectedItem(event.target.value);
+    const { value } = event.target;
+    setSelectedItem(value);
   }
   
   const createSongItem = () => {
@@ -155,6 +157,19 @@ const MusicForm = ({isOpen, isCreating, isEditing, songItemValues}) => {
       }
     </form>
   );
+}
+
+MusicForm.propTypes = {
+  isOpen: propTypes.func.isRequired,
+  isCreating: propTypes.bool,
+  isEditing: propTypes.bool,
+  songItemValues: propTypes.shape({
+    title: propTypes.string.isRequired,
+    album: propTypes.string.isRequired,
+    artist: propTypes.string.isRequired,
+    duration: propTypes.string,
+    genre: propTypes.string,
+  }),
 }
 
 export default MusicForm;

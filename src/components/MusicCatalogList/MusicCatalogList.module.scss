@@ -1,0 +1,9 @@
+@import '/src/styles/functions/toRem.scss';
+
+.list {
+  margin-top: 0;
+  
+  &:last-child {
+    margin-bottom: toRem(50);
+  }
+}

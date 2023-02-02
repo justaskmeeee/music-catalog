@@ -1,11 +1,9 @@
 import React from "react";
 import s from './Loader.module.scss';
 
-const Loader = ({ title }) => {
+const Loader = () => {
   return (
-    <>
-      <h3 className={s.title}>{title}</h3>
-    </>
+    <div className={s.loader}></div>
   );
 }
 
