@@ -1,8 +1,9 @@
 import React from "react";
 import { v4 as uuidv4 } from 'uuid'; 
+import propTypes, { number, string } from 'prop-types';
 import s from './Select.module.scss';
 
-const Select = ({value, onChange, options}) => {
+const Select = ({ value, onChange, options }) => {
   return (
     <div>
       <label className={s.genreLabel}>Выберите жанр:</label>
@@ -15,6 +16,12 @@ const Select = ({value, onChange, options}) => {
       </select>
     </div>
   );
+}
+
+Select.propTypes = {
+  value: propTypes.string,
+  onChange: propTypes.func.isRequired,
+  options: propTypes.arrayOf(propTypes.object),
 }
 
 export default Select;
