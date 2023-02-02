@@ -8,6 +8,7 @@ export const routeSongValueSelector = (state) => state.catalog.routeSongValue;
 export const filterValueSelector = (state) => state.catalog.filterValue;
 export const isLoadingSelector = (state) => state.catalog.isLoading;
 export const isOpenedSelector = (state) => state.catalog.isOpened;
+export const isNotFoundSelector = (state) => state.catalog.isNotFound;
 export const isShownSelector = (state) => state.catalog.isShown;
 
 export const filterSongs = createSelector(
@@ -24,7 +25,7 @@ export const filterSongs = createSelector(
   })
 )
 
-export const getCountOfSongs = createSelector(
+export const isCatalogEmpty = createSelector(
   catalogSelector,
-  (songs) => songs.length
+  (songs) => songs.length === 0
 )
