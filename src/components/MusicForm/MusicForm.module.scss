@@ -1,7 +1,7 @@
 @import "/src/styles/functions/toRem.scss";
 
 .musicForm{
-  width: toRem(250);
+  width: 100%;
   height: toRem(450);
   padding-top: toRem(35);
   padding-right: toRem(20);
@@ -32,6 +32,7 @@
   border: toRem(1) solid #f07167; 
   border-radius: toRem(4);
   background: none;
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
 }
 
@@ -40,5 +41,6 @@
   border: toRem(1) solid #f07167; 
   border-radius: toRem(4);
   background: none;
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
 }
