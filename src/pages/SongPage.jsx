@@ -22,6 +22,7 @@ const SongPage = () => {
 
   useEffect(() => {
     dispatch(getSongPageByIdFetch(id));
+    // eslint-disable-next-line
   }, [dispatch])
 
   const handleGoToCatalog = () => {
