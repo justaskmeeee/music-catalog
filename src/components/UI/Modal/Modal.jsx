@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Button from "../Button";
 import propTypes from 'prop-types';
 import Icon from "../Icon";
 import close from '../../../images/close.svg';
