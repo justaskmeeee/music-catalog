@@ -9,6 +9,7 @@ const initialState = {
   isNotFound: false,
   isOpened: false,
   isShown: false,
+  isFiltering: false,
   currentSong: {},
   routeSongValue: {},
   filterValue: '',
@@ -112,11 +113,15 @@ export const songSlice = createSlice({
     },
     getChangeFilterValueFetch(state) {
       state.isLoading = true;
+      state.isFiltering = true;
     },
     getChangeFilterValueSuccess(state, action) {
       state.isLoading = false;
       state.filterValue = action.payload;
     },
+    resetFilterValue(state) {
+      state.filterValue = '';
+    }
   }
 })
 
@@ -141,6 +146,7 @@ export const {
   getSongPageByIdFailure,
   getChangeFilterValueFetch,
   getChangeFilterValueSuccess,
+  resetFilterValue
 } = songSlice.actions;
 
 export default songSlice.reducer;
