@@ -14,6 +14,19 @@
   }
 }
 
+.removeSong {
+  width: toRem(25);
+  height: toRem(25);
+  margin-right: toRem(15);
+  cursor: pointer;
+
+  @media (max-width: toRem(481)) {
+    display: flex;
+    order: 1;
+    margin-right: 0;
+  }
+}
+
 .link {
   display: block;
   width: 100%;
@@ -38,7 +51,7 @@
   border-radius: toRem(5);
   box-shadow: 0 0 toRem(15) #f07167;
   background: rgb(235, 235, 235);
-  transition: all .1s ease-in-out;
+  transition: all .2s ease-in-out;
 
   &:hover {
     transform: scale(1.01);
@@ -56,10 +69,6 @@
 .importantInfo {
   display: flex;
   align-items: center;
-}
-
-.asd {
-  margin: 0;
 }
 
 .title {
@@ -96,6 +105,7 @@
 
   @media (max-width: toRem(481)) {
     flex-direction: row;
+    margin-right: toRem(10);
   }
 }
 
@@ -107,9 +117,14 @@
   box-shadow: 0 toRem(5) toRem(5) #f07167;
   color: #fdfcdc;
   background: none;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
+
+  &:hover {
+    color: #f07167;
+    background: #fdfcdc;
+  }
 
   &:active {
     transform: scale(.9);

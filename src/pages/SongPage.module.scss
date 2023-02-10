@@ -24,9 +24,14 @@
   color: #fdfcdc;
   box-shadow: 0 toRem(5) toRem(15) #f07167;
   background: none;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
+
+  &:hover {
+    color: #f07167;
+    background: #fdfcdc;
+  }
 
   &:active {
     transform: scale(0.9);
