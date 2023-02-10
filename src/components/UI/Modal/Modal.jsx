@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Button from "../Button";
 import propTypes from 'prop-types';
+import Icon from "../Icon";
+import close from '../../../images/close.svg';
 import s from "./Modal.module.scss";
 
 const Modal = ({ onClose, children }) => {
@@ -19,10 +21,10 @@ const Modal = ({ onClose, children }) => {
     <div className={s.container} onClick={handleCloseModal}>
       <div className={s.modal} onClick={stopPropagation}>
         {children}
-        <Button 
+        <Icon 
           className={s.closeButton}
-          text="x" 
-          onClick={handleCloseModal} 
+          src={close}
+          onClick={handleCloseModal}
         />
       </div>
     </div>,
