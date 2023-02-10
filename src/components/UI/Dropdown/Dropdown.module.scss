@@ -13,7 +13,13 @@
   font-size: toRem(14);
   appearance: none;
   outline: none;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
+  
+  &:hover {
+    color: #fff;
+    background: #f07167;
+  }
 }
 
 .genreOption {
