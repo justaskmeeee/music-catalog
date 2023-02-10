@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getChangeFilterValueFetch } from "store/slices/songSlice";
+import { getChangeFilterValueFetch, resetFilterValue } from "store/slices/songSlice";
 import { useSearchParams } from "react-router-dom";
 import s from './SongFilter.module.scss';
 
@@ -10,16 +10,20 @@ const SongFilter = () => {
 
   const handleSongFilterValue = (event) => {
     const { value } = event.target;
-    dispatch(getChangeFilterValueFetch(value));
-    setSearchParams({search: value});
+    const filterStarted = value.length >= 3;
+
+    if (filterStarted) {
+      setSearchParams({search: value});
+      dispatch(getChangeFilterValueFetch(value)); 
+    } else {
+      removeSongFilterParams();
+    }
   }
 
-  const removeSongFilterParam = () => {
-    const paramQuery = searchParams.get('search');
-    if (paramQuery === '') {
-      searchParams.delete('search');
-      setSearchParams(searchParams);
-    }
+  const removeSongFilterParams = () => {
+    searchParams.delete('search');
+    setSearchParams(searchParams);
+    dispatch(resetFilterValue());
   }
 
   return (
@@ -27,7 +31,6 @@ const SongFilter = () => {
       <input
         className={s.searchField}
         onChange={handleSongFilterValue}
-        onBlur={removeSongFilterParam}
         placeholder="Найти песню"
       />
     </div>

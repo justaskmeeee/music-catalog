@@ -1,0 +1,31 @@
+@import '/src/styles/functions/toRem.scss';
+
+.confirmation {
+  position: relative;
+  padding: toRem(30);
+}
+
+.caption {
+  margin-top: 0;
+
+  @media (max-width: toRem(481)) {
+    text-align: center;
+   }
+}
+
+.confirmButton {
+  width: 100%;
+  padding: toRem(5) toRem(7);
+  margin-right: toRem(5);
+  border: toRem(1) solid #f07167; 
+  border-radius: toRem(4);
+  background: none;
+  transition: all 0.2s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background: #f07167;
+    color: #fff;
+  }
+}

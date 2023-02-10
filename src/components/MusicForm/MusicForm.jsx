@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAddSongFetch, getRemoveCurrentSongFetch, getSaveEditedSongValuesFetch } from "store/slices/songSlice";
 import Input from "../UI/Input";
-import Select from "../UI/Select";
+import Dropdown from "../UI/Dropdown";
 import Button from "../UI/Button";
 import { checkInputValidation } from "utils/checkInputValue";
 import { v4 as uuid } from 'uuid'; 
@@ -129,7 +129,7 @@ const MusicForm = ({ isOpen, isCreating, isEditing, songItemValues }) => {
         errorMessage={errors.duration}
         placeholder="Укажите длительность"
       />
-      <Select
+      <Dropdown
         value={selectedItem}
         onChange={handleSelectedItem}
         options={selectOptions}

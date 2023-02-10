@@ -100,11 +100,17 @@
   border: toRem(1) solid #f07167; 
   border-radius: toRem(4);
   background: none;
+  transition: all 0.2s ease-in-out;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
 
   @media (max-width: toRem(481)) {
     bottom: 5%;
     right: 5%;
+  }
+
+  &:hover {
+    color: #fff;
+    background: #f07167;
   }
 }

@@ -10,18 +10,20 @@ export const isLoadingSelector = (state) => state.catalog.isLoading;
 export const isOpenedSelector = (state) => state.catalog.isOpened;
 export const isNotFoundSelector = (state) => state.catalog.isNotFound;
 export const isShownSelector = (state) => state.catalog.isShown;
+export const isFilteringSelector = (state) => state.catalog.isFiltering;
 
 export const filterSongs = createSelector(
   catalogSelector,
   filterValueSelector,
   (songs, filterValue) => songs.filter(song => {
     for (let key in song) {
-      if (key === 'duration' || key === 'genre' || key === 'id') return;
+      if (key === 'duration' || key === 'genre' || key === 'id') return false;
       const songValue = song[key].toLowerCase();
       if (songValue.includes(filterValue.toLowerCase())) {
         return true;
       }
-    }    
+    }
+    return song;
   })
 )
 

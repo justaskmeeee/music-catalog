@@ -55,7 +55,8 @@ function* workEditSong({ payload }) {
 function* workDeleteSongFromCatalog({ payload }) {
   try { 
     const songId = payload;
-    const selectedSongRequest = yield call(deleteSong, songId);
+    // selected song request
+    yield call(deleteSong, songId);
     yield call(fetchSongs);
     yield put(getRemoveCurrentSongSuccess(songId));
   } catch (error) {
@@ -78,7 +79,8 @@ function* workGetSongPageById({ payload }) {
 function* workSearchSong({ payload }) {
   try {
     const filterValue = payload;
-    const result = yield call(searchSong, filterValue);
+    // result
+    yield call(searchSong, filterValue);
     yield put(getChangeFilterValueSuccess(filterValue));
   } catch (error) {
     console.log(error.message);

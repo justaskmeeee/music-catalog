@@ -36,9 +36,10 @@
 
 .closeButton {
   position: absolute;
-  top: 2%;
-  right: 2%;
-  font-size: toRem(16);
+  top: toRem(10);
+  right: toRem(10);
+  width: toRem(20);
+  height: toRem(20);
   border: none;
   background: none;
   -webkit-tap-highlight-color: transparent;
